@@ -2,7 +2,7 @@
  * @author Christian Brel <ch.brel@gmail.com>
  */
 
-import { PING_SOCKETIO_TYPE, PONG_SOCKETIO_TYPE } from './constants'
+import { PING_SOCKETIO_TYPE, PONG_SOCKETIO_TYPE } from './constants';
 
 /**
  * Main class to manage ClientManager.
@@ -27,9 +27,9 @@ class ClientManager {
    */
   addClient(socket) {
     socket.on(PONG_SOCKETIO_TYPE, (data) => {
-      console.log(`Received PONG from ${data.id}!`)
-    })
-    socket.emit(PING_SOCKETIO_TYPE, { id: socket.id })
+      console.log(`Received PONG from ${data.id}!`);
+    });
+    socket.emit(PING_SOCKETIO_TYPE, { id: socket.id });
   }
 
   /**
@@ -43,4 +43,4 @@ class ClientManager {
   }
 }
 
-export default ClientManager
+export default ClientManager;
