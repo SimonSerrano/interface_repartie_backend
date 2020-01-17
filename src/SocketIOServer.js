@@ -21,6 +21,9 @@ class SocketIOServer {
     this._socketIOClients = {};
     this._onNewClientCallback = null;
     this._onClientDisconnectionCallback = null;
+    this._onQuizzRequestCallback = null;
+    this._onQuizzSaveCallback = null;
+    this._onDoneQuizzCallbak = null;
   }
 
   /**
@@ -62,6 +65,39 @@ class SocketIOServer {
   }
 
   /**
+   * Set the quizz request callback
+   *
+   * @param {*} quizzRequestCallback
+   * @memberof SocketIOServer
+   */
+  onQuizzRequest(quizzRequestCallback) {
+    this._onQuizzRequestCallback = quizzRequestCallback;
+  }
+
+
+  /**
+   * Set the save quizz callback
+   *
+   * @param {*} saveQuizzCallback
+   * @memberof SocketIOServer
+   */
+  onSaveQuizz(saveQuizzCallback) {
+    this._onQuizzSaveCallback = saveQuizzCallback;
+  }
+
+  /**
+   * Set the done quizz callback
+   *
+   * @param {*} doneQuizzCallback
+   * @memberof SocketIOServer
+   */
+  onDoneQuizz(doneQuizzCallback) {
+    this._onDoneQuizzCallbak = doneQuizzCallback;
+  }
+
+
+
+  /**
    * New client.
    *
    * @method newClient
@@ -71,8 +107,13 @@ class SocketIOServer {
     this._socketIOClients[socket.id] = true;
     if (this._onNewClientCallback !== null) {
       this._onNewClientCallback(socket);
+      this._onQuizzRequestCallback(socket);
+      this._onQuizzSaveCallback(socket);
+      this._onDoneQuizzCallbak(socket);
     }
   }
+
+  
 
   /**
    * Disconnect client.
