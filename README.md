@@ -9,7 +9,7 @@ Run the command `npm install`
 Run the command `npm start`
 
 ## Communication schema
-(schema)[https://imgur.com/a/LtQP2gM]
+![schema](https://imgur.com/a/LtQP2gM)
 
 ## Documentation
 
