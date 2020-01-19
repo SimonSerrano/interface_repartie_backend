@@ -9,7 +9,7 @@ Run the command `npm install`
 Run the command `npm start`
 
 ## Communication schema
-![schema](https://i.imgur.com/VACvPin.png)
+![schema](https://i.imgur.com/PjFH69n.png)
 
 ## Documentation
 
