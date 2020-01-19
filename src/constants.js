@@ -8,24 +8,25 @@ export const DONE_DATA_TYPE = 'DONE';
 
 /* QUIZZ MOCK */
 export const QUIZZ = {
-    quizz:
-    {
-        id: 1,
-        question: "Où se place la brosse à dent ?",
-        answers: [
-            {
-                label: "Dans la salle de bain",
-                valid: true
-            },
-            {
-                label: "Dans la cuisine",
-                valid: false
-            },
-            {
-                label: "Dans le salon",
-                valid: false
-            }
-        ]
-    }
+    quizz: [
+        {
+            id: 1,
+            question: "Où se place la brosse à dent ?",
+            answers: [
+                {
+                    label: "Dans la salle de bain",
+                    valid: true
+                },
+                {
+                    label: "Dans la cuisine",
+                    valid: false
+                },
+                {
+                    label: "Dans le salon",
+                    valid: false
+                }
+            ]
+        }
+    ]
 
 }
