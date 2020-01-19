@@ -18,7 +18,7 @@ class QuizzManager {
     requestQuizz(socket) {
         socket.on(QUIZZ_DATA_REQUEST_TYPE, () => {
             console.log(`Received ${QUIZZ_DATA_REQUEST_TYPE} from ${socket.id}`);
-            socket.emit(QUIZZ_DATA_TYPE, QUIZZ);
+            socket.emit(QUIZZ_DATA_TYPE, JSON.stringify(QUIZZ));
         });
     }
 
