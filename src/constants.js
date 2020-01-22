@@ -7,7 +7,7 @@ export const QUIZZ_DATA_REQUEST_TYPE = 'REQUEST';
 export const DONE_DATA_TYPE = 'DONE';
 
 /* QUIZZ MOCK */
-export const QUIZZ = {
+export let QUIZZ = {
     quizz: [
         {
             id: 1,

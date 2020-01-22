@@ -31,7 +31,11 @@ class QuizzManager {
      * @memberof DatabaseAccessManager
      */
     saveQuizz(socket) {
-        socket.on(SAVE_DATA_TYPE, (quizz) => console.log(quizz));
+        socket.on(SAVE_DATA_TYPE, (quizz) => {
+            console.log(`Received quizz : ${quizz}`);
+            quizz.id = QUIZZ.quizz.length;
+            QUIZZ.quizz.push(quizz);
+        });
     }
 
     doneQuizz(socket) {
