@@ -3,12 +3,6 @@ var mongoose = require('mongoose');
 var quizzTabletteSchema = mongoose.Schema({
 	quizzTabletteID:{
 		type:String
-	},
-	question:{
-		type: String
-	},
-	answers:{
-		type: Array
 	}
 });
 

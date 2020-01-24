@@ -8,7 +8,6 @@ exports.all = function(req, res){
 			return res.status(500).send(err);
 
 		return res.status(200).send(quizz);
-
 	});
 }
 
@@ -28,10 +27,30 @@ exports.add = function(req, res){
 exports.addQuizz = function(req, res){
 	var quizz = [
 		{
-			question: 'Où se trouve la brosse à dent', 
-			answers:[{title:'Dans la cuisine', value:false}, 
-			{title:'Dans la salle de bain', value:true},
-			{title:'Dans la chambre', value:false}],}
+			quizz:[
+			{
+				id:1,
+				question:'Où se trouve la brosse à dent', 
+				answers:
+				[
+				{title:'Dans la cuisine', value:false}, 
+				{title:'Dans la salle de bain', value:true},
+				{title:'Dans la chambre', value:false}
+				],
+			},
+			{
+				id:2,
+				question:'Comment on se brosse les cheveux ?', 
+				answers:
+				[
+				{title:'Avec une fourchette', value:false}, 
+				{title:'Avec une brosse à dent', value:false},
+				{title:'Avec un peigne', value:true}
+				],
+			},
+
+			] 
+		}
 	];        
 
 	QuizzTablette.collection.insertMany(quizz, function(err, quizz) {

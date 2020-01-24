@@ -1,4 +1,17 @@
-const { QUIZZ_DATA_REQUEST_TYPE, QUIZZ, SAVE_DATA_TYPE, QUIZZ_DATA_TYPE, DONE_DATA_TYPE } = require("./constants");
+let QUIZZ = {
+    quizz: [
+        {
+			id:1,
+			question:'Où se trouve la brosse à dent', 
+			answers:
+			[
+			{title:'Dans la cuisine', value:false}, 
+			{title:'Dans la salle de bain', value:true},
+			{title:'Dans la chambre', value:false}
+			],
+		},
+    ]
+}
 
 
 let express = require('express');
@@ -39,16 +52,13 @@ app.use('/api', apiRoutes);
 io.on('connection', (socket) => {
 	console.log('user connected', socket.id);
 
-	socket.on('REQUEST', (Post) =>{
+	socket.on('REQUEST', (id) =>{
 		console.log('Request froom', socket.id);
+		io.emit('QUIZZ', JSON.stringify(QUIZZ));
 	});
 
 	socket.on('QUIZZ', (Answer) =>{
 		console.log('QUIZZ : ' + JSON.stringify(Answer));
-		socket.on(QUIZZ_DATA_REQUEST_TYPE, () => {
-            console.log(`Received ${QUIZZ_DATA_REQUEST_TYPE} from ${socket.id}`);
-            socket.emit(QUIZZ_DATA_TYPE, JSON.stringify(QUIZZ));
-        });
 	});
 
 	socket.on('SAVE', (Answer) =>{
