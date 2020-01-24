@@ -14,4 +14,17 @@ router.route('/quizzTable/quizz')
 	.post(quizzTableController.add)
 	.get(quizzTableController.all);
 
+
+
+var quizzTabletteController = require('./quizz-tablette/quizzTabletteController');
+
+
+router.route('/quizzTablette/quizz')
+	.get(quizzTabletteController.all);
+
+
+router.route('/quizzTablette/cheat')
+	.post(quizzTabletteController.addQuizz);
+
+
 module.exports = router;

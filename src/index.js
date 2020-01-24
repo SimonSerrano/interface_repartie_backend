@@ -1,3 +1,6 @@
+const { QUIZZ_DATA_REQUEST_TYPE, QUIZZ, SAVE_DATA_TYPE, QUIZZ_DATA_TYPE, DONE_DATA_TYPE } = require("./constants");
+
+
 let express = require('express');
 let mongoose = require('mongoose');
 let bodyParser = require('body-parser');
@@ -23,7 +26,7 @@ app.use(bodyParser.json());
 let apiRoutes = require("./api-routes");
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb+srv://dbUser:quizzdb@quizztable-tyrrm.gcp.mongodb.net/test?retryWrites=true&w=majority').then(()=> {
+mongoose.connect('mongodb+srv://dbUser:quizzdb@quizztable-tyrrm.gcp.mongodb.net/quizzdb?retryWrites=true&w=majority').then(()=> {
 	console.log('Connected to BDD')
 })
 .catch(err => console.log(err));
@@ -42,6 +45,10 @@ io.on('connection', (socket) => {
 
 	socket.on('QUIZZ', (Answer) =>{
 		console.log('QUIZZ : ' + JSON.stringify(Answer));
+		socket.on(QUIZZ_DATA_REQUEST_TYPE, () => {
+            console.log(`Received ${QUIZZ_DATA_REQUEST_TYPE} from ${socket.id}`);
+            socket.emit(QUIZZ_DATA_TYPE, JSON.stringify(QUIZZ));
+        });
 	});
 
 	socket.on('SAVE', (Answer) =>{
