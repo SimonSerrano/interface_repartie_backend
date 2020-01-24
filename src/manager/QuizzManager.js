@@ -1,6 +1,6 @@
 'use strict'
 
-import { QUIZZ_DATA_REQUEST_TYPE, QUIZZ, SAVE_DATA_TYPE, QUIZZ_DATA_TYPE, DONE_DATA_TYPE } from "../constants";
+const { QUIZZ_DATA_REQUEST_TYPE, QUIZZ, SAVE_DATA_TYPE, QUIZZ_DATA_TYPE, DONE_DATA_TYPE } = require("../constants");
 
 class QuizzManager {
 
@@ -44,4 +44,4 @@ class QuizzManager {
 
 }
 
-export default QuizzManager;
+module.exports = QuizzManager;

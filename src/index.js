@@ -1,39 +1,56 @@
-/**
- * @author Christian Brel <ch.brel@gmail.com>
- */
-
-import SocketIOServer from './SocketIOServer';
-import ClientManager from './manager/ClientManager';
-import QuizzManager from './manager/QuizzManager';
+let express = require('express');
+let mongoose = require('mongoose');
+let bodyParser = require('body-parser');
+let cors = require('cors');
 
 
-const clientManager = new ClientManager();
-const quizzManager = new QuizzManager();
+const app = express();
+const http = require('http').Server(app);
+var io = require('socket.io')(http);
 
-const onNewClient = (socket) => {
-  clientManager.addClient(socket);
-};
+app.use(cors());
 
-const onClientDisconnection = (socket) => {
-  clientManager.deleteClient(socket);
-};
+app.use(function(req,res,next){
+  res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Credentials", "true")
+  res.header("")
+  next();
+});
 
-const onQuizzRequest = (socket) => {
-  quizzManager.requestQuizz(socket);
-}
+app.use(bodyParser.json());
 
-const onSaveQuizz = (socket) => {
-  quizzManager.saveQuizz(socket);
-}
+let apiRoutes = require("./api-routes");
 
-const onDoneQuizz = (socket) => {
-  quizzManager.doneQuizz(socket);
-}
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb+srv://dbUser:quizzdb@quizztable-tyrrm.gcp.mongodb.net/test?retryWrites=true&w=majority').then(()=> {
+	console.log('Connected to BDD')
+})
+.catch(err => console.log(err));
 
-const socketIOServer = new SocketIOServer();
-socketIOServer.onNewClient(onNewClient);
-socketIOServer.onClientDisconnection(onClientDisconnection);
-socketIOServer.onQuizzRequest(onQuizzRequest);
-socketIOServer.onSaveQuizz(onSaveQuizz);
-socketIOServer.onDoneQuizz(onDoneQuizz);
-socketIOServer.start();
+var db = mongoose.connection;
+
+app.get('/', (req, res) => res.send('Hello World!'));
+app.use('/api', apiRoutes);
+
+io.on('connection', (socket) => {
+	console.log('user connected', socket.id);
+
+	socket.on('REQUEST', (Post) =>{
+		console.log('Request froom', socket.id);
+	});
+
+	socket.on('QUIZZ', (Answer) =>{
+		console.log('QUIZZ : ' + JSON.stringify(Answer));
+	});
+
+	socket.on('SAVE', (Answer) =>{
+		console.log('SAVE : ' + JSON.stringify(Answer));
+	});
+});
+
+
+http.listen(10000, () => {
+	console.info('SocketIOServer is ready.');
+    console.info('Socket.IO\'s port is 10000');
+});

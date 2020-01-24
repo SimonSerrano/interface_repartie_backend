@@ -2,8 +2,8 @@
  * @author Christian Brel <ch.brel@gmail.com>
  */
 
-import { PING_SOCKETIO_TYPE, PONG_SOCKETIO_TYPE, SERVER_REDIRECTS, TABLE_SOCKETIO_WEB, WEB_SOCKETIO_TABLE, TABLET_SOCKETIO_TABLE, TABLET_SOCKETIO_WEB, WEB_SOCKETIO_TABLET, TABLE_SOCKETIO_TABLET, QUIZZ_DATA_TYPE, QUIZZ } from '../constants';
-import SocketIOServer from '../SocketIOServer';
+const { PING_SOCKETIO_TYPE, PONG_SOCKETIO_TYPE, SERVER_REDIRECTS, TABLE_SOCKETIO_WEB, WEB_SOCKETIO_TABLE, TABLET_SOCKETIO_TABLE, TABLET_SOCKETIO_WEB, WEB_SOCKETIO_TABLET, TABLE_SOCKETIO_TABLET, QUIZZ_DATA_TYPE, QUIZZ } = require('../constants');
+const SocketIOServer = require('../SocketIOServer');
 
 /**
  * Main class to manage ClientManager.
@@ -46,4 +46,4 @@ class ClientManager {
   }
 }
 
-export default ClientManager;
+module.exports = ClientManager;
