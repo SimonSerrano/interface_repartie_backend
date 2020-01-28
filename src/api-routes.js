@@ -20,7 +20,9 @@ var quizzTabletteController = require('./quizz-tablette/quizzTabletteController'
 router.route('/quizzTablette/quizz')
 	.get(quizzTabletteController.all);
 router.route('/quizzTablette/cheat')
-	.post(quizzTabletteController.addQuizz);
+    .post(quizzTabletteController.addQuizz);
+router.route('/quizzTablette/quizz')
+    .post(quizzTabletteController.addQuizzTest);
 
 
 module.exports = router;
