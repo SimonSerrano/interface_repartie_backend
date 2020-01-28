@@ -49,16 +49,13 @@ var db = mongoose.connection;
 app.get('/', (req, res) => res.send('Hello World!'));
 app.use('/api', apiRoutes);
 
+var quizzTableController = require('./quizz-table/quizzTableController');
+
 io.on('connection', (socket) => {
 	console.log('user connected', socket.id);
 
-	socket.on('REQUEST', (id) =>{
-		console.log('Request froom', socket.id);
-		io.emit('QUIZZ', JSON.stringify(QUIZZ));
-	});
-
-	socket.on('QUIZZ', (Answer) =>{
-		console.log('QUIZZ : ' + JSON.stringify(Answer));
+	socket.on('REQUEST', (Answer) =>{
+		quizzTableController.all(io);
 	});
 
 	socket.on('SAVE', (Answer) =>{

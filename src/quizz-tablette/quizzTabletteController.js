@@ -33,9 +33,9 @@ exports.addQuizz = function(req, res){
 				question:'Où se trouve la brosse à dent', 
 				answers:
 				[
-				{title:'Dans la cuisine', value:false}, 
-				{title:'Dans la salle de bain', value:true},
-				{title:'Dans la chambre', value:false}
+					{title:'Dans la cuisine', value:false}, 
+					{title:'Dans la salle de bain', value:true},
+					{title:'Dans la chambre', value:false}
 				],
 			},
 			{
@@ -45,7 +45,8 @@ exports.addQuizz = function(req, res){
 				[
 				{title:'Avec une fourchette', value:false}, 
 				{title:'Avec une brosse à dent', value:false},
-				{title:'Avec un peigne', value:true}
+				{title:'Avec un peigne', value:true},
+				{title:'Avec une pelle', value:false}
 				],
 			},
 
