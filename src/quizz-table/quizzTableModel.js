@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var quizzTableSchema = mongoose.Schema({
 	quizzTableID:{
 		type:String
-	}
+	},
 });
 
 
