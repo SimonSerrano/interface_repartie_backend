@@ -63,6 +63,12 @@ exports.addQuizz = function(req, res){
 }
 
 exports.addQuizzTest = async function (req, res) {
-	console.log(req);
-	QuizzTablette.collection.insertOne();
+	const quizz = req.body;
+	QuizzTablette.collection.insertOne(quizz, function(err, quizz) {
+		if(err) {
+			console.log(err);
+			res.status(500).send(err);
+		}
+		res.status(200).send({msg: "Quizz added", data: quizz});
+	});
 }
