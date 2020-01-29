@@ -13,13 +13,13 @@ exports.all = function(io, res){
 }
 
 exports.add = function(req, res){
-	var quizzTable = new QuizzTable();
-	quizzTable.save(function(err, post){
-		if(err)
-			return res.status(500).send(err);
-
-
-		return res.status(200).send("Quizz table added");
+	const quizz = req.body;
+	QuizzTable.collection.insertOne(quizz, function(err, quizz) {
+		if(err) {
+			console.log(err);
+			res.status(500).send(err);
+		}
+		res.status(200).send({msg: "Quizz added", data: quizz});
 	});
 }
 
