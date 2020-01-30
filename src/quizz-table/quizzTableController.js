@@ -12,6 +12,16 @@ exports.all = function(io, res){
 	});
 }
 
+exports.quizz = function(req, res) {
+	QuizzTable.get(function(err, quizz) {
+		if(err) {
+			return res.status(500).send(err);
+		}
+		console.log(quizz);
+		res.status(200).send(quizz);
+	});
+}
+
 exports.add = function(req, res){
 	const quizz = req.body;
 	QuizzTable.collection.insertOne(quizz, function(err, quizz) {

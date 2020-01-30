@@ -12,7 +12,7 @@ var quizzTableController = require('./quizz-table/quizzTableController');
 
 router.route('/quizzTable/quizz')
 	.post(quizzTableController.add)
-	.get(quizzTableController.all);
+	.get(quizzTableController.quizz);
 
 router.route('/quizzTable/cheat')
 	.post(quizzTableController.addQuizz);
