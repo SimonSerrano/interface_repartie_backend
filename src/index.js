@@ -18,6 +18,7 @@ let express = require('express');
 let mongoose = require('mongoose');
 let bodyParser = require('body-parser');
 let cors = require('cors');
+const {PLAY_EVENT_TYPE} = require('./constants');
 
 
 const app = express();
@@ -49,6 +50,7 @@ app.get('/', (req, res) => res.send('Hello World!'));
 app.use('/api', apiRoutes);
 
 var quizzTableController = require('./quizz-table/quizzTableController');
+quizzTableController.setIO(io);
 
 io.on('connection', (socket) => {
 	console.log('user connected', socket.id);
@@ -60,6 +62,12 @@ io.on('connection', (socket) => {
 	socket.on('SAVE', (Answer) =>{
 		console.log('SAVE : ' + JSON.stringify(Answer));
 	});
+
+	socket.on(PLAY_EVENT_TYPE, (quizz) => {
+		console.log(`Starting quizz : ${quizz}`);
+		socket.broadcast.emit(PLAY_EVENT_TYPE, quizz);
+	});
+
 });
 
 

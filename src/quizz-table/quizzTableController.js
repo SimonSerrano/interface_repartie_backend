@@ -1,6 +1,6 @@
 QuizzTable = require('./quizzTableModel');
 var ObjectId = require('mongodb').ObjectId;
-
+var socket;
 
 
 exports.all = function(io, res){
@@ -20,6 +20,16 @@ exports.quizz = function(req, res) {
 		console.log(quizz);
 		res.status(200).send(quizz);
 	});
+}
+
+exports.play = function(req, res) {
+	const {PLAY_EVENT_TYPE} = require('../constants');
+	socket.emit(PLAY_EVENT_TYPE, req.body);
+	res.status(200).send({msg: 'ok'});
+}
+
+exports.setIO = function(io) {
+	socket = io;
 }
 
 exports.add = function(req, res){

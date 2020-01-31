@@ -1,4 +1,7 @@
+const {QUIZZ_TABLE_ROUTE, QUIZZ_TABLETTE_ROUTE} = require('./constants');
+
 let router = require('express').Router();
+
 
 router.get('/', function (req, res) {
     res.json({
@@ -10,9 +13,13 @@ router.get('/', function (req, res) {
 var quizzTableController = require('./quizz-table/quizzTableController');
 
 
-router.route('/quizzTable/quizz')
+router.route(QUIZZ_TABLE_ROUTE)
 	.post(quizzTableController.add)
-	.get(quizzTableController.quizz);
+    .get(quizzTableController.quizz);
+
+router.route('/quizzTable/play').post(
+    quizzTableController.play
+);
 
 router.route('/quizzTable/cheat')
 	.post(quizzTableController.addQuizz);
