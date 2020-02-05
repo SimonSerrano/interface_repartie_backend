@@ -11,15 +11,12 @@ router.get('/', function (req, res) {
 });
 
 var quizzTableController = require('./quizz-table/quizzTableController');
-
-
 router.route(QUIZZ_TABLE_ROUTE)
 	.post(quizzTableController.add)
-    .get(quizzTableController.quizz);
+  .get(quizzTableController.quizz);
 
-router.route('/quizzTable/play').post(
-    quizzTableController.play
-);
+router.route('/quizzTable/play')
+  .post(quizzTableController.play);
 
 router.route('/quizzTable/cheat')
 	.post(quizzTableController.addQuizz);
@@ -27,11 +24,20 @@ router.route('/quizzTable/cheat')
 
 var quizzTabletteController = require('./quizz-tablette/quizzTabletteController');
 router.route('/quizzTablette/quizz')
-	.get(quizzTabletteController.all);
+	.get(quizzTabletteController.all)
+  .post(quizzTabletteController.addQuizzTest);
+
 router.route('/quizzTablette/cheat')
-    .post(quizzTabletteController.addQuizz);
-router.route('/quizzTablette/quizz')
-    .post(quizzTabletteController.addQuizzTest);
+  .post(quizzTabletteController.addQuizz);
+  
+
+
+var timelineController = require('./quizz-table/timelineController');
+router.route('/quizzTable/timeline')
+  .get(timelineController.all);
+
+router.route('/quizzTable/timeline/cheat')
+  .post(timelineController.addTimeline);
 
 
 module.exports = router;

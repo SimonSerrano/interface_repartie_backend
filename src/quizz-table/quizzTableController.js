@@ -3,6 +3,12 @@ var ObjectId = require('mongodb').ObjectId;
 var socket;
 
 
+exports.setIO = function(io) {
+	socket = io;
+}
+
+
+
 exports.all = function(io, res){
 	QuizzTable.get(function(err, quizz){
 		if(err)
@@ -26,10 +32,6 @@ exports.play = function(req, res) {
 	const {PLAY_EVENT_TYPE} = require('../constants');
 	socket.emit(PLAY_EVENT_TYPE, req.body);
 	res.status(200).send({msg: 'ok'});
-}
-
-exports.setIO = function(io) {
-	socket = io;
 }
 
 exports.add = function(req, res){
