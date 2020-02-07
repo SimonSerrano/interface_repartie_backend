@@ -28,6 +28,12 @@ exports.play = function(req, res) {
 	res.status(200).send({msg: 'ok'});
 }
 
+exports.changeImage = (req, res) => {
+	const {CHANGE_IMAGE_EVENT_TYPE} = require('../constants');
+	socket.emit(CHANGE_IMAGE_EVENT_TYPE, req.body);
+	res.status(200).send({msg: 'ok'});
+}
+
 exports.setIO = function(io) {
 	socket = io;
 }

@@ -1,5 +1,6 @@
 /* SOCKET.IO message Types */
 const PLAY_EVENT_TYPE = 'PLAY';
+const CHANGE_IMAGE_EVENT_TYPE = 'CHANGE_IMAGE';
 
 
 /* API REST ROUTES */
@@ -15,6 +16,7 @@ let QUIZZ = {
 
 module.exports = {
     PLAY_EVENT_TYPE,
+    CHANGE_IMAGE_EVENT_TYPE,
     QUIZZ_TABLE_ROUTE,
     QUIZZ_TABLETTE_ROUTE
 }

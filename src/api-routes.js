@@ -21,6 +21,10 @@ router.route('/quizzTable/play').post(
     quizzTableController.play
 );
 
+router.route('/quizzTable/changeImage').post(
+    quizzTableController.changeImage
+);
+
 router.route('/quizzTable/cheat')
 	.post(quizzTableController.addQuizz);
 
