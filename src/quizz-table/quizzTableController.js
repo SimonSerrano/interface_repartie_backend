@@ -3,6 +3,12 @@ var ObjectId = require('mongodb').ObjectId;
 var socket;
 
 
+exports.setIO = function(io) {
+	socket = io;
+}
+
+
+
 exports.all = function(io, res){
 	QuizzTable.get(function(err, quizz){
 		if(err)

@@ -50,13 +50,18 @@ app.get('/', (req, res) => res.send('Hello World!'));
 app.use('/api', apiRoutes);
 
 var quizzTableController = require('./quizz-table/quizzTableController');
+var timelineController = require('./quizz-table/timelineController');
 quizzTableController.setIO(io);
 
 io.on('connection', (socket) => {
 	console.log('user connected', socket.id);
 
-	socket.on('REQUEST', (Answer) =>{
+	/*socket.on('REQUEST', (Answer) =>{
 		quizzTableController.all(io);
+	});*/
+
+	socket.on('REQUEST', (Answer) =>{
+		timelineController.all(io);
 	});
 
 	socket.on('SAVE', (Answer) =>{
