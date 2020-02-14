@@ -12,7 +12,7 @@ exports.all = function(io, res){
 		if(err)
 			return res.status(500).send(err);
 		console.log("hello table veut timeline");
-		io.emit("QUIZZ", timeline);
+		io.emit("PLAY", timeline[0]);
 	});
 }
 

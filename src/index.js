@@ -60,10 +60,6 @@ io.on('connection', (socket) => {
 		quizzTableController.all(io);
 	});*/
 
-	socket.on('REQUEST', (Answer) =>{
-		timelineController.all(io);
-	});
-
 	socket.on('SAVE', (Answer) =>{
 		console.log('SAVE : ' + JSON.stringify(Answer));
 	});

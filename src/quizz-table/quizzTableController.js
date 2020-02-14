@@ -30,8 +30,13 @@ exports.quizz = function(req, res) {
 
 exports.play = function(req, res) {
 	const {PLAY_EVENT_TYPE} = require('../constants');
-	socket.emit(PLAY_EVENT_TYPE, req.body);
-	res.status(200).send({msg: 'ok'});
+	if(req.body.type === 'timeline') {
+		const timelineController = require('./timelineController');
+		timelineController.all(socket, res);
+	}else {
+		socket.emit(PLAY_EVENT_TYPE, req.body);
+		res.status(200).send({msg: 'ok'});
+	}
 }
 
 exports.changeImage = (req, res) => {
