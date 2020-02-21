@@ -43,5 +43,10 @@ router.route('/quizzTable/timeline')
 router.route('/quizzTable/timeline/cheat')
   .post(timelineController.addTimeline);
 
+const themeController = require('./themes/themeController');
+
+router.route('/themes').get(themeController.all).post(themeController.add);
+
+
 
 module.exports = router;
