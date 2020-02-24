@@ -1,13 +1,39 @@
 QuizzTablette = require('./quizzTabletteModel');
+Theme = require('../themes/themeModel');
 var ObjectId = require('mongodb').ObjectId;
 
+
+const getThemes = (quizz) => {
+	return new Promise((resolve, reject) => {
+		const result = [];
+		quizz.forEach((q) => {
+			Theme.getById(q.theme, function(err, theme) {
+				if(err) {
+					reject(err);
+				}
+				const themedQuizz = {
+					questions : q.questions,
+					_id: q._id,
+					title: q.title,
+					theme: theme.name,
+					type: q.type,
+					description: q.description,
+					users: q.users
+				}
+				q.theme = theme.name;
+				console.log(q)
+			});
+		});
+		resolve(quizz);
+	})
+}
 
 exports.all = function(req, res){
 	QuizzTablette.get(function(err, quizz){
 		if(err)
 			return res.status(500).send(err);
-
 		return res.status(200).send(quizz);
+		
 	});
 }
 

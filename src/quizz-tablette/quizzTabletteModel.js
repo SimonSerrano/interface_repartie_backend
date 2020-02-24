@@ -16,7 +16,7 @@ var quizzTabletteSchema = mongoose.Schema({
 var QuizzTablette = module.exports = mongoose.model('quizztablette', quizzTabletteSchema);
 
 module.exports.get = function(callback, limit){
-	QuizzTablette.find(callback).limit(limit);
+	QuizzTablette.find(callback).populate('theme', 'name -_id').limit(limit);
 }
 
 
