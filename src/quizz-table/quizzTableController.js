@@ -11,8 +11,10 @@ exports.setIO = function(io) {
 
 exports.all = function(io, res){
 	QuizzTable.get(function(err, quizz){
-		if(err)
+		if(err){
+			console.log(err)
 			return res.status(500).send(err);
+		}
 		console.log("hello table veut quizz");
 		io.emit("QUIZZ", quizz);
 	});
@@ -21,6 +23,7 @@ exports.all = function(io, res){
 exports.quizz = function(req, res) {
 	QuizzTable.get(function(err, quizz) {
 		if(err) {
+			console.log(err);
 			return res.status(500).send(err);
 		}
 		console.log(quizz);
