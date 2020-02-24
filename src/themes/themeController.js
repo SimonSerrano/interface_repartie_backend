@@ -13,11 +13,12 @@ exports.all = function(req, res) {
 
 exports.add = function(req, res) {
     const theme = req.body;
+    console.log(theme);
     Theme.collection.insertOne(theme, (err, theme) => {
         if(err) {
             console.log(err);
             res.status(500).send(err);
         }
-        res.status(200).send(theme);
+        res.sendStatus(200);
     });
 }
