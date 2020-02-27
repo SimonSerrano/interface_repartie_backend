@@ -4,7 +4,7 @@ var quizzTabletteSchema = mongoose.Schema({
 	_id: mongoose.Schema.Types.ObjectId,
 	title: mongoose.Schema.Types.String,
 	type: mongoose.Schema.Types.String,
-	questions: mongoose.Schema.Types.Array,
+	questions: mongoose.Schema.Types.Mixed,
 	description: mongoose.Schema.Types.String,
 	theme: {
 		type: mongoose.Schema.Types.ObjectId,
