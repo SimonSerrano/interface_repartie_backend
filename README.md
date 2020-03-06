@@ -1,5 +1,8 @@
 # interface_repartie_backend
 
+## Prerequisites
+Change MongoDB url in constants.js file to match your own MongoDB instance
+
 ## Installation
 
 Run the command `npm install`
