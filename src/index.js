@@ -18,7 +18,7 @@ let express = require('express');
 let mongoose = require('mongoose');
 let bodyParser = require('body-parser');
 let cors = require('cors');
-const {PLAY_EVENT_TYPE} = require('./constants');
+const {PLAY_EVENT_TYPE, MONGO_URL} = require('./constants');
 
 
 const app = express();
@@ -39,7 +39,7 @@ app.use(bodyParser.json());
 let apiRoutes = require("./api-routes");
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb+srv://dbUser:quizzdb@quizztable-tyrrm.gcp.mongodb.net/quizzdb?retryWrites=true&w=majority').then(()=> {
+mongoose.connect(MONGO_URL).then(()=> {
 	console.log('Connected to BDD')
 })
 .catch(err => console.log(err));
